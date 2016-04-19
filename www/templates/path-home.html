@@ -1,0 +1,78 @@
+<ion-view view-title="{{path.name}}" hide-tabs>
+
+  <!-- navigation bar -->
+  <ion-nav-bar>
+    <ion-nav-back-button class="button-icon button-clear">
+      <i class="ion-ios-arrow-back"></i>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+
+  <!-- main -->
+  <ion-content>
+
+    <!-- head bar -->
+    <img src="http://www.nationofchange.org/sites/default/files/YellowstoneDrillingSite071714.jpg">
+
+    <!-- other options -->
+    <div class="button-bar">
+      <a class="button" ui-sref=".info">实用信息</a>
+      <a class="button">装备清单</a>
+      <a class="button" ui-sref=".travels">路书分享</a>
+      <a class="button" ui-sref=".qna">你问我答</a>
+    </div>
+
+    <!-- 口耳相传 -->
+    <div class="padding"><span>口耳相传</span><div class="item-note"><a href="">添加</a> <a href="">全部</a></div></div>
+    <ion-list>
+      <ion-item ng-repeat="tip in tips">
+        <p>{{tip.title}}</p>
+        <a href="">{{tip.author}}</a>
+        <span>{{tip.datetime}}</span>
+        <a href="" class="item-note"><i href="" class="ion-chatbubble-working"></i>{{tip.nComment}}</a>
+      </ion-item>
+    </ion-list>
+
+    <!-- 线路评价 -->
+    <div class="padding"><span>线路评价</span><div class="item-note"><a href="">添加</a> <a href="">全部</a></div></div>
+    <ion-list>
+
+      <!-- item format -->
+      <ion-item ng-repeat="comment in comments">
+        <div class="item item-avatar">
+            <img class="thumbnail" src="http://www.ourenergypolicy.org/wp-content/Cimy_User_Extra_Fields/pglesh/avatar/Pamela%20Lesh%20Headshot-thumbnail.jpg">
+            <h2>{{comment.author}}</h2>
+            <p>{{comment.date}}</p>
+        </div>
+        <div class="item item-body">
+            <p>“{{comment.content}}”</p>
+        </div>
+        <div class="item item-body">
+          <div class="row">
+            <div class="col">
+              路况难度
+              <span class="icon ion-ios-star" ng-repeat="i in [comment.roadRate] | makeRange"></span><span class="icon ion-ios-star-outline" ng-repeat="i in [5-comment.roadRate] | makeRange"></span>
+            </div>
+            <div class="col">
+              <span>补给难度</span>
+              <span class="icon ion-ios-star" ng-repeat="i in [comment.supplyRate] | makeRange"></span><span class="icon ion-ios-star-outline" ng-repeat="i in [5-comment.supplyRate] | makeRange"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              天气状况
+              <span class="icon ion-ios-star" ng-repeat="i in [comment.weatherRate] | makeRange"></span><span class="icon ion-ios-star-outline" ng-repeat="i in [5-comment.weatherRate] | makeRange"></span>
+            </div>
+            <div class="col">
+              体能要求
+              <span class="icon ion-ios-star" ng-repeat="i in [comment.bodyRate] | makeRange"></span><span class="icon ion-ios-star-outline" ng-repeat="i in [5-comment.bodyRate] | makeRange"></span>
+            </div>
+          </div>
+        </div>
+      </ion-item>
+      <!-- end item format -->
+
+    </ion-list>
+
+  </ion-content>
+
+</ion-view>

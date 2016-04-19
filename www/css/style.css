@@ -1,0 +1,87 @@
+/* Empty. Add your own CSS if you like */
+img {
+  max-width: 100%;
+}
+
+.thumbnail {
+  max-width: 20%;
+}
+
+.center-button span.tab-title {
+  display: none;
+}
+
+.center-button i.icon {
+  height: 100%;
+  font-size: 4.8em;
+}
+
+#map {
+  height: 300px;
+  width: 100%;
+}
+
+.relative {
+  position: relative;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.float-right {
+  float: right;
+}
+
+.overflow {
+  overflow: auto;
+}
+
+.cover {
+  background-image: url("http://www.nationofchange.org/sites/default/files/YellowstoneDrillingSite071714.jpg");
+  height: 300px;
+  position: relative;
+}
+
+.cover-avatar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+}
+
+.cover-avatar > img:first-child {
+  max-width: 100%;
+  max-height: 100%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.cover-avatar > h2 {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: normal;
+  color: white;
+}
+
+.cover-avatar .cover-info {
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+  top: 33%;
+  color: white;
+}
+
+.button-flow .button {
+  width: 25%;
+  background-color: transparent;
+}
+
+.button-flow .button > img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}

@@ -1,0 +1,80 @@
+<ion-view view-title="线路">
+  
+  <!-- header -->
+  <ion-header-bar class="item-input-inset">
+    <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input id="SearchInput" ng-focus="showSearchPanel()" ng-change="search()" ng-model="query" type="search" placeholder="输入线路，活动场地，活动区域">
+    </label>
+  </ion-header-bar>
+
+
+  <ion-content>
+
+    <!-- filter bar -->
+    <div class="button-bar">
+        <a class="button" ng-class="{'active': filter=='region'}" ng-click="toggleFilter('region')">地理区域</a>
+        <a class="button" ng-class="{'active': filter=='type'}" ng-click="toggleFilter('type')">活动类型</a>
+        <a class="button" ng-class="{'active': filter=='duration'}" ng-click="toggleFilter('duration')">天数时长</a>
+    </div>
+
+    <!-- recommendation -->
+    <div ng-hide="query || filter || hasFilter()">
+        <div class="padding">
+            <span>户外热门</span>
+            <a class="item-note">全部</a>
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="path in hotpaths" ui-sref=".path({pathId:$index})">
+                {{ path.name }}
+            </ion-item>
+        </ion-list>
+    </div>
+
+    <!-- autocomplete -->
+    <div ng-show="query && !filter && !hasFilter()">
+        <ion-list>
+            <ion-item ng-repeat="suggest in suggests" ui-sref=".path({pathId:$index})">
+                {{ suggest.name }}
+            </ion-item>
+        </ion-list>
+        <div ng-show="suggests.length==0 && !filter">
+             <p>对不起，你搜索的线路或活动暂时没有记录，你可以选择：</p>
+             <button class="button button-full button-positive">创建新线路或活动</button>
+             <button class="button button-full button-balanced">邀请他人分享内容</button>
+        </div>
+    </div>
+
+    <!-- region filter -->
+    <div ng-show="filter=='region'">
+      <div class="padding">热门区域</div>
+      <ion-checkbox ng-repeat="regionid in hotRegions" ng-model="$parent.regions[regionid].checked" ng-click="updateFilters()">{{ $parent.regions[regionid].title }}</ion-checkbox>
+
+      <div class="padding">华东区域</div>
+      <ion-checkbox ng-repeat="regionid in eastRegions" ng-model="$parent.regions[regionid].checked">{{ $parent.regions[regionid].title }}</ion-checkbox>
+
+      <div class="padding">华北区域</div>
+      <ion-checkbox ng-repeat="regionid in northRegions" ng-model="$parent.regions[regionid].checked">{{ $parent.regions[regionid].title }}</ion-checkbox>
+    </div>
+
+    <!-- sport type filter -->
+    <div ng-show="filter=='type'">
+      <ion-checkbox ng-repeat="sport in sports" ng-model="sport.checked">{{ sport.title }}</ion-checkbox>
+    </div>
+
+    <!-- duration filter -->
+    <div ng-show="filter=='duration'">
+      <ion-checkbox ng-repeat="duration in durations" ng-model="duration.checked">{{ duration.title }}</ion-checkbox>
+    </div>
+
+    <!-- filter result -->
+    <div ng-show="!filter && hasFilter()">
+      <div class="padding">
+        <button class="button icon-right ion-ios-close-empty button-calm button-small" ng-repeat="region in regions" ng-if="region.checked" ng-click="region.checked = false">{{ region.title }}</button>
+        <button class="button icon-right ion-ios-close-empty button-calm button-small" ng-repeat="sport in sports" ng-if="sport.checked" ng-click="sport.checked = false">{{ sport.title }}</button>
+        <button class="button icon-right ion-ios-close-empty button-calm button-small" ng-repeat="duration in durations" ng-if="duration.checked" ng-click="duration.checked = false">{{ duration.title }}</button>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

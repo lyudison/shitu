@@ -1,0 +1,23 @@
+<ion-view view-title="{{path.name}}">
+  
+  <ion-nav-bar>
+    <ion-nav-back-button class="button-icon button-clear">
+      <i class="ion-ios-arrow-back"></i>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+
+  <ion-content>
+
+    <h1>{{ path.name }}的实用信息页面</h1>
+    
+    <!-- map -->
+    <div class="padding">线路地图 <span class="item-note"><a href="">修改</a></span></div>
+    <div id='map' class="relative"></div>
+
+    <div>
+      path id: {{path.id}}
+    </div>
+
+  </ion-content>
+
+</ion-view>
